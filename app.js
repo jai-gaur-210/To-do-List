@@ -13,7 +13,7 @@ app.use(express.static("public"))
 app.set('view engine', 'ejs')
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", {
+mongoose.connect("mongodb+srv://jaigaur:jaigaur123@cluster0.pbknaev.mongodb.net/todolistDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
   }
@@ -50,7 +50,7 @@ listSchema ={
 
 const List = mongoose.model("List" , listSchema)
 
-List.collection.drop()
+// List.collection.drop()
 
 app.get("/", (req, res) => {
     Item.find({}).then(function(foundItems){
@@ -134,6 +134,6 @@ app.post("/delete" , function(req,res){
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("run hora hai")
 })
